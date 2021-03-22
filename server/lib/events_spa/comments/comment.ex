@@ -8,12 +8,15 @@ defmodule EventsSpa.Comments.Comment do
     field :post_id, :id
 
     timestamps()
+
+    belongs_to :user, EventsSpa.Users.User
+    belongs_to :event, EventsSpa.Events.Event
   end
 
   @doc false
   def changeset(comment, attrs) do
     comment
-    |> cast(attrs, [:body])
-    |> validate_required([:body])
+    |> cast(attrs, [:body, :user_id, :post_id])
+    |> validate_required([:body, :user_id, :post_id])
   end
 end
