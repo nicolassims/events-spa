@@ -3,9 +3,9 @@ defmodule EventsSpa.Repo.Migrations.CreateComments do
 
   def change do
     create table(:comments) do
-      add :body, :string
-      add :user_id, references(:users, on_delete: :nothing)
-      add :post_id, references(:posts, on_delete: :nothing)
+      add :body, :string, null:false
+      add :user_id, references(:users, on_delete: :nothing), null:false
+      add :post_id, references(:posts, on_delete: :nothing), null:false
       #TODO: what does on_delete mean?
       timestamps()
     end
