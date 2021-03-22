@@ -21,9 +21,9 @@ defmodule EventsSpaWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", EventsSpaWeb do
-  #   pipe_through :api
-  # end
+  scope "/api/v1", EventsSpaWeb do
+    pipe_through :api
+  end
 
   # Enables LiveDashboard only for development
   #
