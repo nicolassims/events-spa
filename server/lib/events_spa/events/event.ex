@@ -10,12 +10,14 @@ defmodule EventsSpa.Events.Event do
     field :user_id, :id
 
     timestamps()
+
+    belongs_to :user, EventsSpa.Users.User
   end
 
   @doc false
   def changeset(event, attrs) do
     event
-    |> cast(attrs, [:body, :name, :guests, :date])
-    |> validate_required([:body, :name, :guests, :date])
+    |> cast(attrs, [:body, :name, :guests, :date, :user_id])
+    |> validate_required([:body, :name, :guests, :date, :user_id])
   end
 end
