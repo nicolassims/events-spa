@@ -52,7 +52,9 @@ defmodule EventsSpa.Responses do
   def create_response(attrs \\ %{}) do
     %Response{}
     |> Response.changeset(attrs)
-    |> Repo.insert()
+    |> Repo.insert(
+      on_conflict: :replace_all,
+      conflict_target: [:post_id, :user_id])
   end
 
   @doc """
