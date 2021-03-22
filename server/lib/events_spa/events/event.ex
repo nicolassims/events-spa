@@ -7,11 +7,10 @@ defmodule EventsSpa.Events.Event do
     field :date, :naive_datetime
     field :guests, :string
     field :name, :string
-    field :user_id, :id
+    belongs_to :user, EventsSpa.Users.User
 
     timestamps()
 
-    belongs_to :user, EventsSpa.Users.User
     has_many :comments, EventsSpa.Comments.Comment
     has_many :responses, EventsSpa.Responses.Response
   end

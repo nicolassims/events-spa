@@ -4,13 +4,10 @@ defmodule EventsSpa.Responses.Response do
 
   schema "responses" do
     field :value, :integer
-    field :user_id, :id
-    field :event_id, :id
-
-    timestamps()
-
     belongs_to :user, EventsSpa.Users.User
     belongs_to :event, EventsSpa.Events.Event
+
+    timestamps()
   end
 
   @doc false

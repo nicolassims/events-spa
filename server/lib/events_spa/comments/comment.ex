@@ -4,13 +4,10 @@ defmodule EventsSpa.Comments.Comment do
 
   schema "comments" do
     field :body, :string
-    field :user_id, :id
-    field :event_id, :id
-
-    timestamps()
-
     belongs_to :user, EventsSpa.Users.User
     belongs_to :event, EventsSpa.Events.Event
+
+    timestamps()
   end
 
   @doc false
