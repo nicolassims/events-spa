@@ -11,6 +11,7 @@ defmodule EventsSpa.Users.User do
     timestamps()
 
     has_many :events, EventsSpa.Events.Event
+    has_many :comments, EventsSpa.Comments.Comment
   end
 
   @doc false
