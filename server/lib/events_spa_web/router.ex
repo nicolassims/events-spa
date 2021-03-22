@@ -18,6 +18,7 @@ defmodule EventsSpaWeb.Router do
 
     get "/", PageController, :index
     resources "/users", UserController, except: [:new, :edit]
+    resources "/events", EventController, except: [:new, :edit]
   end
 
   # Other scopes may use custom stacks.
