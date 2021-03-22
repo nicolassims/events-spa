@@ -5,7 +5,7 @@ defmodule EventsSpa.Comments.Comment do
   schema "comments" do
     field :body, :string
     field :user_id, :id
-    field :post_id, :id
+    field :event_id, :id
 
     timestamps()
 
@@ -16,7 +16,7 @@ defmodule EventsSpa.Comments.Comment do
   @doc false
   def changeset(comment, attrs) do
     comment
-    |> cast(attrs, [:body, :user_id, :post_id])
-    |> validate_required([:body, :user_id, :post_id])
+    |> cast(attrs, [:body, :user_id, :event_id])
+    |> validate_required([:body, :user_id, :event_id])
   end
 end
