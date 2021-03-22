@@ -13,6 +13,7 @@ defmodule EventsSpa.Events.Event do
 
     belongs_to :user, EventsSpa.Users.User
     has_many :comments, EventsSpa.Comments.Comment
+    has_many :responses, EventsSpa.Responses.Response
   end
 
   @doc false
