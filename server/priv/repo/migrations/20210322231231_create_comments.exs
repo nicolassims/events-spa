@@ -10,7 +10,6 @@ defmodule EventsSpa.Repo.Migrations.CreateComments do
       timestamps()
     end
 
-    create index(:comments, [:user_id])
-    create index(:comments, [:event_id])
+    create index(:comments, [:user_id, :event_id])
   end
 end
