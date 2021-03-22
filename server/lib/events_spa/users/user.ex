@@ -9,6 +9,8 @@ defmodule EventsSpa.Users.User do
     field :photo_hash, :string
 
     timestamps()
+
+    has_many :events, EventsSpa.Events.Event
   end
 
   @doc false
