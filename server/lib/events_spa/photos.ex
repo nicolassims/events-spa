@@ -1,4 +1,4 @@
-defmodule EventsApp.Photos do
+defmodule EventsSpa.Photos do
   def save_photo(name, path) do
     data = File.read!(path)
     hash = sha256(data)
