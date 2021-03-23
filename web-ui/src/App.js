@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 
+import "./App.scss";
+
 async function fetchUsers() {
   let text = await fetch("http://localhost:4000/api/v1/users", {});
   let resp = await text.json();
