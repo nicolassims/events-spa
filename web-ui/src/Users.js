@@ -17,6 +17,10 @@ function Field({user, setUser, field}) {
   );
 }
 
+function photo_path(user) {
+  return "http://localhost:4000/photos/" + user.photo_hash;
+}
+
 function UserForm({user, setUser}) {
   function onSubmit(ev) {
     ev.preventDefault();
@@ -42,10 +46,10 @@ function Users({users, user_form, dispatch}) {
 
   let rows = users.map((user) => (
     <tr key={user.id}>
+      <img class="minipic" alt="Profile" src={photo_path(user)}></img>
       <td>{user.name}</td>
       <td>
-        <Button variant="secondary"
-                onClick={() => setUser(user)}>
+        <Button variant="secondary" onClick={() => setUser(user)}>
           Edit
         </Button>
       </td>
@@ -66,6 +70,7 @@ function Users({users, user_form, dispatch}) {
           <table className="table table-striped">
             <thead>
               <tr>
+                <th>Profile Picture</th>
                 <th>Name</th>
                 <th>Actions</th>
               </tr>
