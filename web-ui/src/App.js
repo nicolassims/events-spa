@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import "./App.scss";
+import Users from "./Users";
 
 async function fetchUsers() {
   let text = await fetch("http://localhost:4000/api/v1/users", {});
@@ -18,11 +19,9 @@ function App() {
   }, [users]);
 
   return (
-    <div>
-      <ul>
-        {users.map((uu) => (<li key={uu.id}>{uu.name}</li>))}
-      </ul>
-    </div>
+    <Container>
+      <Users users={users} />
+    </Container>
   );
 }
 
