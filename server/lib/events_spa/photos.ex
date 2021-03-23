@@ -15,7 +15,6 @@ defmodule EventsApp.Photos do
     save_photo(name, data, hash, meta)
   end
 
-  # Note: data race
   def save_photo(_name, data, hash, meta) do
     meta = Map.update!(meta, :refs, &(&1 + 1))
     File.write!(meta_path(hash), Jason.encode!(meta))
@@ -29,8 +28,6 @@ defmodule EventsApp.Photos do
     {:ok, Map.get(meta, :name), data}
   end
 
-  # TODO: drop_photo
-
   def read_meta(hash) do
     with {:ok, data} <- File.read(meta_path(hash)),
          {:ok, meta} <- Jason.decode(data, keys: :atoms)
@@ -43,7 +40,7 @@ defmodule EventsApp.Photos do
 
   def base_path(hash) do
     Path.expand("~/.local/data/photo_blog")
-    |> Path.join("#{Mix.env}")
+    |> Path.join(Application.get_env(:events_spa, :mix_env))
     |> Path.join(String.slice(hash, 0, 2))
     |> Path.join(String.slice(hash, 2, 30))
   end
