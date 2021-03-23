@@ -36,7 +36,7 @@ defmodule EventsSpa.Events do
       ** (Ecto.NoResultsError)
 
   """
-  def get_event!(id), do
+  def get_event!(id) do
     Repo.get!(Event, id)
     |> Repo.preload(:user)
   end
