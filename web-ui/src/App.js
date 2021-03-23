@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import "./App.scss";
 import Users from "./Users";
 import Nav from "./Nav";
+import Feed from "./Feed";
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
       <Nav />
       <Switch>
         <Route path="/" exact>
-          <h1>EventsApp Feed</h1>
+          <Feed />
         </Route>
         <Route path="/users">
           <Users />
