@@ -54,7 +54,7 @@ defmodule EventsSpa.Responses do
     |> Response.changeset(attrs)
     |> Repo.insert(
       on_conflict: :replace_all,
-      conflict_target: [:post_id, :user_id])
+      conflict_target: [:event_id, :user_id])
   end
 
   @doc """
