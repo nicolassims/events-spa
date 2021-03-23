@@ -19,9 +19,9 @@ function App() {
   }, [users]);
 
   return (
-    <Container>
+    <container>
       <Users users={users} />
-    </Container>
+    </container>
   );
 }
 
