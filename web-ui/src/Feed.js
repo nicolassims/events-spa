@@ -1,9 +1,9 @@
 import { Row, Col, Card } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
-function photo_path(event) {
+/*function photo_path(event) {
   return "http://localhost:4000/photos/" + event.photo_hash;
-}
+}*/
 
 function Event({event}) {
   return (

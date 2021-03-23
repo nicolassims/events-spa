@@ -1,5 +1,5 @@
 {
-  "name": "events_app",
+  "name": "events-spa",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
