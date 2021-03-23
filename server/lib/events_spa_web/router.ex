@@ -13,7 +13,7 @@ defmodule EventsSpaWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", PhotoBlogWeb do
+  scope "/", EventsSpaWeb do
     get "/", PageController, :index
     get "/photos/:hash", PageController, :photo
   end
