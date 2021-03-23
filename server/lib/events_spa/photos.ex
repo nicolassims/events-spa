@@ -39,7 +39,7 @@ defmodule EventsSpa.Photos do
   end
 
   def base_path(hash) do
-    Path.expand("~/.local/data/photo_blog")
+    Path.expand("~/.local/data/events-spa")
     |> Path.join(Application.get_env(:events_spa, :mix_env))
     |> Path.join(String.slice(hash, 0, 2))
     |> Path.join(String.slice(hash, 2, 30))
