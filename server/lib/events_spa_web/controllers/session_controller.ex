@@ -2,7 +2,7 @@ defmodule EventsSpaWeb.SessionController do
   use EventsSpaWeb, :controller
 
   def create(conn, %{"name" => name, "password" => password}) do
-    user = EventsSpaWeb.Users.get_user_by_name!(name)
+    user = EventsSpa.Users.get_user_by_name!(name)
     # TODO: Verify password
     sess = %{
       user_id: user.id,
