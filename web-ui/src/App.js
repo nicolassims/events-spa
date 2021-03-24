@@ -2,7 +2,6 @@ import { Container } from 'react-bootstrap';
 import { Switch, Route } from 'react-router-dom';
 
 import "./App.scss";
-//import Users from "./Users";
 import Nav from "./Nav";
 import Feed from "./Feed";
 import UsersList from './Users/List';
@@ -19,7 +18,7 @@ function App() {
         <Route path="/users" exact>
           <UsersList />
         </Route>
-        <Route path="/users/new">
+        <Route path="/users/new" >
           <UsersNew />
         </Route>
       </Switch>

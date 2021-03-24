@@ -8,7 +8,7 @@ import { create_user, fetch_users } from '../api';
 
 function UsersNew() {
   let history = useHistory();
-  const [user, setUser] = useState({name: "", pass1: "", pass2: ""});
+  const [user, setUser] = useState({name: "", pass1: "", pass2: "", email: ""});
 
   function check_pass(p1, p2) {
     if (p1 !== p2) {
@@ -32,13 +32,11 @@ function UsersNew() {
 
   function onSubmit(ev) {
     ev.preventDefault();
-    console.log(user);
 
-    let data = pick(user, ['name', 'password']);
-    create_user(data).then(() => {
-      fetch_users();
-      history.push("/users");
-    });
+    let data = pick(user, ['name', 'password', 'email']);
+    create_user(data)
+    fetch_users();
+    history.push("/users");
   }
 
   return (
@@ -65,6 +63,13 @@ function UsersNew() {
                           onChange={(ev) => update("pass2", ev)}
                           value={user.pass2 || ""} />
           </Form.Group>
+          <Form.Group>
+            <Form.Label>Email</Form.Label>
+            <Form.Control type="email"
+                          onChange={(ev) => update("email", ev)}
+                          value={user.email || ""} />
+          </Form.Group>
+
           <Button variant="primary"
                   type="submit"
                   disabled={user.pass_msg !== ""}>

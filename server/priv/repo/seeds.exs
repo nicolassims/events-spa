@@ -12,27 +12,15 @@
 
 alias EventsSpa.Repo
 alias EventsSpa.Users.User
-alias EventsSpa.Photos
 
 defmodule Inject do
-  def photo(name) do
-    photos = Application.app_dir(:events_spa, "priv/photos")
-    path = Path.join(photos, name)
-    {:ok, hash} = Photos.save_photo(name, path)
-    hash
-  end
-
-  def user(name, pass, photo, email) do
+  def user(name, pass, email) do
     hash = Argon2.hash_pwd_salt(pass)
-    Repo.insert!(%User{name: name, password_hash: hash, photo_hash: photo, email: email})
+    Repo.insert!(%User{name: name, password_hash: hash, email: email})
   end
 end
 
-hummingbird = Inject.photo("hummingbird.png")
-hydra = Inject.photo("hydra.jpeg")
-unicorn = Inject.photo("unicorn.jpg")
-
-_aster = Inject.user("Aster", "Martin", hummingbird, "aster.martin@gmail.com")
-_zoe = Inject.user("Zoe", "Tesla", hydra, "zoe.tesla@gmail.com")
-_day = Inject.user("Hyun-Woo", "Day", hydra, "hyun-woo.day@gmail.com")
-_rose = Inject.user("Rose", "Smart", unicorn, "rose.smart@gmail.com")
+_aster = Inject.user("Aster", "Martin", "aster.martin@gmail.com")
+_zoe = Inject.user("Zoe", "Tesla", "zoe.tesla@gmail.com")
+_day = Inject.user("Hyun-Woo", "Day", "hyun-woo.day@gmail.com")
+_rose = Inject.user("Rose", "Smart", "rose.smart@gmail.com")

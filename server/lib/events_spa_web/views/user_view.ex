@@ -14,7 +14,6 @@ defmodule EventsSpaWeb.UserView do
     %{id: user.id,
       name: user.name,
       password_hash: user.password_hash,
-      email: user.email,
-      photo_hash: user.photo_hash}
+      email: user.email,}
   end
 end

@@ -2,17 +2,10 @@ import { Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-function photo_path(user) {
-  return "http://localhost:4000/photos/" + user.photo_hash;
-}
-
 function UsersList({users}) {
   let rows = users.map((user) => (
     
     <tr key={user.id}>
-      <td>
-        <img className="minipic" alt="Profile" src={photo_path(user)}></img>
-      </td>
       <td>{user.name}</td>
       <td>[Edit]</td>
     </tr>
@@ -31,7 +24,6 @@ function UsersList({users}) {
           <table className="table table-striped">
             <thead>
               <tr>
-                <th>Profile Picture</th>
                 <th>Name</th>
                 <th>Actions</th>
               </tr>
