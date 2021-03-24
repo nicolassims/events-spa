@@ -45,8 +45,11 @@ function Users({users, user_form, dispatch}) {
   }
 
   let rows = users.map((user) => (
+    
     <tr key={user.id}>
-      <img class="minipic" alt="Profile" src={photo_path(user)}></img>
+      <td>
+        <img className="minipic" alt="Profile" src={photo_path(user)}></img>
+      </td>
       <td>{user.name}</td>
       <td>
         <Button variant="secondary" onClick={() => setUser(user)}>

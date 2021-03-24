@@ -14,6 +14,8 @@ defmodule EventsSpaWeb.Router do
   end
 
   scope "/", EventsSpaWeb do
+    pipe_through :browser
+
     get "/", PageController, :index
     get "/photos/:hash", PageController, :photo
   end
@@ -25,6 +27,8 @@ defmodule EventsSpaWeb.Router do
     resources "/users", UserController, except: [:new, :edit]
     resources "/events", EventController, except: [:new, :edit]
     resources "/comments", CommentController, except: [:new, :edit]
+    resources "/responses", ResponseController, except: [:new, :edit]
+    resources "/session", SessionController, only: [:create]
   end
 
   # Enables LiveDashboard only for development

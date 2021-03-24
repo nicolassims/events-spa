@@ -4,9 +4,7 @@ defmodule EventsSpaWeb.PageController do
   alias EventsSpa.Photos
 
   def index(conn, _params) do
-    events = EventsSpa.Events.list_events()
-    |> EventsSpa.Events.load_reactions()
-    render(conn, "index.html", events: events)
+    render(conn, "index.html")
   end
 
   def photo(conn, %{"hash" => hash}) do
