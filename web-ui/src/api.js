@@ -30,6 +30,9 @@ export function fetch_events() {
   }));
 }
 
+export function create_user(user) {
+  return api_post("/users", {user});
+}
 
 export function api_login(name, password) {
   api_post("/session", {name, password}).then((data) => {

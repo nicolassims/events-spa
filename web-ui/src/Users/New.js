@@ -1,98 +1,83 @@
 import { Row, Col, Form, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { useState } from 'react'
+import { useHistory } from 'react-router-dom';
+import pick from 'lodash/pick';
 
-import capitalize from 'lodash/capitalize';
+import { create_user, fetch_users } from '../api';
 
-function Field({user, setUser, field}) {
-  function update(ev) {
-    let tmp = Object.assign({}, user);
-    tmp[field] = ev.target.value;
-    setUser(tmp);
+function UsersNew() {
+  let history = useHistory();
+  const [user, setUser] = useState({name: "", pass1: "", pass2: ""});
+
+  function check_pass(p1, p2) {
+    if (p1 !== p2) {
+      return "Passwords don't match.";
+    }
+
+    /*if (p1.length < 8) {
+      return "Password too short.";
+    }*/
+
+    return "";
   }
 
-  return (
-    <Form.Group>
-      <Form.Label>{capitalize(field)}</Form.Label>
-      <Form.Control type="text" onChange={update} value={user[field]||""} />
-    </Form.Group>
-  );
-}
+  function update(field, ev) {
+    let u1 = Object.assign({}, user);
+    u1[field] = ev.target.value;
+    u1.password = u1.pass1;
+    u1.pass_msg = check_pass(u1.pass1, u1.pass2);
+    setUser(u1);
+  }
 
-function photo_path(user) {
-  return "http://localhost:4000/photos/" + user.photo_hash;
-}
-
-function UserForm({user, setUser}) {
   function onSubmit(ev) {
     ev.preventDefault();
-    console.log(ev);
     console.log(user);
+
+    let data = pick(user, ['name', 'password']);
+    create_user(data).then(() => {
+      fetch_users();
+      history.push("/users");
+    });
   }
 
   return (
-    <Form onSubmit={onSubmit}>
-      <Field user={user} setUser={setUser} field="name" />
-      <Button variant="primary" type="submit">
-        Save
-      </Button>
-    </Form>
+    <Row>
+      <Col>
+        <h2>New User</h2>
+        <Form onSubmit={onSubmit}>
+          <Form.Group>
+            <Form.Label>Name</Form.Label>
+            <Form.Control type="text"
+                          onChange={(ev) => update("name", ev)}
+                          value={user.name || ""} />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Password</Form.Label>
+            <Form.Control type="password"
+                          onChange={(ev) => update("pass1", ev)}
+                          value={user.pass1 || ""} />
+            <p>{user.pass_msg}</p>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Confirm Password</Form.Label>
+            <Form.Control type="password"
+                          onChange={(ev) => update("pass2", ev)}
+                          value={user.pass2 || ""} />
+          </Form.Group>
+          <Button variant="primary"
+                  type="submit"
+                  disabled={user.pass_msg !== ""}>
+            Save
+          </Button>
+        </Form>
+      </Col>
+    </Row>
   );
 }
 
-function Users({users, user_form, dispatch}) {
-
-  function setUser(user) {
-    dispatch({type: 'user_form/set', data: user})
-  }
-
-  let rows = users.map((user) => (
-    
-    <tr key={user.id}>
-      <td>
-        <img className="minipic" alt="Profile" src={photo_path(user)}></img>
-      </td>
-      <td>{user.name}</td>
-      <td>
-        <Button variant="secondary" onClick={() => setUser(user)}>
-          Edit
-        </Button>
-      </td>
-    </tr>
-  ));
-
-  return (
-    <div>
-      <Row>
-        <Col>
-          <h2>List Users</h2>
-          <p>
-            <Button variant="secondary"
-                    onClick={() => setUser({})}>
-              New User
-            </Button>
-          </p>
-          <table className="table table-striped">
-            <thead>
-              <tr>
-                <th>Profile Picture</th>
-                <th>Name</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              { rows }
-            </tbody>
-          </table>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <h2>Edit User</h2>
-          <UserForm user={user_form} setUser={setUser} />
-        </Col>
-      </Row>
-    </div>
-  );
+function state2props() {
+  return {};
 }
 
-export default connect(({users, user_form}) => ({users, user_form}))(Users);
+export default connect(state2props)(UsersNew);
