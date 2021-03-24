@@ -12,6 +12,7 @@
 
 alias EventsSpa.Repo
 alias EventsSpa.Users.User
+alias EventsSpa.Events.Event
 alias EventsSpa.Photos
 
 defmodule Inject do
@@ -21,18 +22,13 @@ defmodule Inject do
     {:ok, hash} = Photos.save_photo(name, path)
     hash
   end
-
-  def user(name, pass, photo, email) do
-    hash = Argon2.hash_pwd_salt(pass)
-    Repo.insert!(%User{name: name, password_hash: hash, photo_hash: photo, email: email})
-  end
 end
 
 hummingbird = Inject.photo("hummingbird.png")
 hydra = Inject.photo("hydra.jpeg")
 unicorn = Inject.photo("unicorn.jpg")
 
-_aster = Inject.user("Aster", "Martin", hummingbird, "aster.martin@gmail.com")
-_zoe = Inject.user("Zoe", "Tesla", hydra, "zoe.tesla@gmail.com")
-_day = Inject.user("Hyun-Woo", "Day", hydra, "hyun-woo.day@gmail.com")
-_rose = Inject.user("Rose", "Smart", unicorn, "rose.smart@gmail.com")
+_aster = Repo.insert!(%User{name: "Aster Martin", email: "", photo_hash: hummingbird, password_hash: "karayakaylar"})
+_zoe = Repo.insert!(%User{name: "Zoe Tesla", email: "", photo_hash: hydra, password_hash: "karayakaylar"})
+_day = Repo.insert!(%User{name: "Hyun-Woo Day", email: "", photo_hash: hydra, password_hash: "karayakaylar"})
+_rose = Repo.insert!(%User{name: "Rose Smart", email: "", photo_hash: unicorn, password_hash: "karayakaylar"})

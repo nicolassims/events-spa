@@ -38,18 +38,10 @@ function session(state = null, action) {
   }
 }
 
-function error(state = null, action) {
-  switch (action.type) {
-    case 'session/set': return null;
-    case 'error/set': return action.data;
-    default: return state;
-  }
-}
-
 function root_reducer(state, action) {
   console.log("root_reducer", state, action);
   let reducer = combineReducers({
-      users, user_form, events, session, error
+      users, user_form, events, session
   });
 
   return reducer(state, action);
