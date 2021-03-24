@@ -16,7 +16,7 @@ defmodule EventsSpaWeb.SessionController do
     else
       conn
       |> put_resp_header("content-type", "application/json; charset=UTF-8")
-      |> send_resp(:unauthorized, Jason.encode!(%{error: "fail"}))
+      |> send_resp(:unauthorized, Jason.encode!(nil))
     end
   end
 end

@@ -6,7 +6,6 @@ async function api_get(path) {
   return resp.data;
 }
 
-
 async function api_post(path, data) {
   let opts = {
     method: 'POST',
@@ -35,11 +34,19 @@ export function fetch_events() {
 export function api_login(name, password) {
   api_post("/session", {name, password}).then((data) => {
     console.log("login resp", data);
-    let action = {
-      type: 'session/set',
-      data: data
+    if (data) {
+      let action = {
+        type: 'session/set',
+        data: data
+      }
+      store.dispatch(action);
+    } else {
+      let action = {
+        type: 'error/set',
+        data: data
+      };
+      store.dispatch(action);
     }
-    store.dispatch(action);
   });
 }
 
