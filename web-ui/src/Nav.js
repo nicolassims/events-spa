@@ -1,4 +1,4 @@
-import { Nav, Row, Col, Form, Button } from 'react-bootstrap'
+import { Nav, Row, Col, Form, Button, Alert } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { useState } from 'react';
@@ -47,19 +47,34 @@ function LOI({session}) {
 
 const LoginOrInfo = connect(({session}) => ({session}))(LOI);
 
-export default function AppNav() {
+function AppNav({error}) {
+  let error_row = null;
+
+  if (error) {
+    error_row = (
+      <Row>
+        <Col>
+          <Alert variant="danger">{error}</Alert>
+        </Col>
+      </Row>
+    );
+  }
+
   return (
-    <Row>
-      <Col>
-        <Nav variant="pills">
-          <Link to="/">Feed</Link>
-          <Link to="/users">Users</Link>
-        </Nav>
-      </Col>
-      <Col>
-        <LoginOrInfo />
-      </Col>
-    </Row>
+    <div>
+      <Row>
+        <Col>
+          <Nav variant="pills">
+            <Link to="/">Feed</Link>
+            <Link to="/users">Users</Link>
+          </Nav>
+        </Col>
+        <Col>
+          <LoginOrInfo />
+        </Col>
+      </Row>
+      { error_row }
+    </div>
   );
 }
 
@@ -72,3 +87,5 @@ function Link({to, children}) {
     </Nav.Item>
   );
 }
+
+export default connect(({error}) => ({error}))(AppNav);

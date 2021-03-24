@@ -34,16 +34,16 @@ export function fetch_events() {
 export function api_login(name, password) {
   api_post("/session", {name, password}).then((data) => {
     console.log("login resp", data);
-    if (data) {
+    if (data.session) {
       let action = {
         type: 'session/set',
-        data: data
+        data: data.session
       }
       store.dispatch(action);
-    } else {
+    } else if (data.error) {
       let action = {
         type: 'error/set',
-        data: data
+        data: data.error
       };
       store.dispatch(action);
     }
