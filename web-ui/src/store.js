@@ -31,10 +31,9 @@ function events(state = [], action) {
 
 function session(state = null, action) {
   switch (action.type) {
-    case 'session/set': 
-      return action.data;
-    default:
-      return state;
+    case 'session/set': return action.data;
+    case 'session/clear': return null;
+    default: return state;
   }
 }
 

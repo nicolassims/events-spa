@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { useState } from 'react';
 import { api_login } from './api';
 
+import store from './store'
+
 function LoginForm() {
   const [name, setName] = useState("");
   const [pass, setPass] = useState("");
@@ -31,8 +33,16 @@ function LoginForm() {
 }
 
 function SessionInfo({session}) {
+  function logout(ev) {
+    ev.preventDefault();
+    store.dispatch({ type: 'session/clear'});
+  }
+
   return (
-    <p>Logged in as {session.name}</p>
+    <p>
+      Logged in as {session.name}
+      <Button onClick={logout}>Logout</Button>
+    </p>
   );
 }
 
