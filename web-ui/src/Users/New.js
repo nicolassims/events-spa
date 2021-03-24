@@ -1,5 +1,6 @@
-import { connect } from 'react-redux';
 import { Row, Col, Form, Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
+
 import capitalize from 'lodash/capitalize';
 
 function Field({user, setUser, field}) {
