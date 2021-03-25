@@ -14,6 +14,7 @@ function user_form(state = {}, action) {
   case 'user_form/set':
     return action.data;
   case 'session/clear':
+    localStorage.removeItem("session");
     return {name: "", email: "", password: ""};
   default:
     return state;
