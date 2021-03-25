@@ -6,6 +6,7 @@ import Nav from "./Nav";
 import Feed from "./Feed";
 import UsersList from './Users/List';
 import UsersNew from './Users/New';
+import EventsNew from './Events/New';
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
         </Route>
         <Route path="/users/new" >
           <UsersNew />
+        </Route>
+        <Route path="/events/new" >
+          <EventsNew />
         </Route>
       </Switch>
     </Container>

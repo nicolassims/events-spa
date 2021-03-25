@@ -27,7 +27,6 @@ defmodule EventsSpa.Users.User do
   end
 
   def add_password_hash(cset, password) do
-    IO.inspect(cset)
     change(cset, Argon2.add_hash(password))
   end
 end

@@ -9,9 +9,12 @@ async function api_get(path) {
 async function api_post(path, data) {
   let opts = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 
+      'Content-Type': 'application/json'
+   },
     body: JSON.stringify(data)
   };
+  console.log(opts);
   let text = await fetch("http://localhost:4000/api/v1" + path, opts);
   return await text.json();
 }
@@ -32,6 +35,22 @@ export function fetch_events() {
 
 export function create_user(user) {
   return api_post("/users", {user});
+}
+
+export function create_event(event) {
+  console.log(event);
+  return api_post("/events", {event});
+  /*let data = new FormData();
+  data.append("event[name]", event.name);
+  data.append("event[date]", event.date);
+  data.append("event[guests]", event.guests);
+  data.append("event[body]", event.body);
+  fetch("http://localhost:4000/api/v1/events", {
+    method: 'POST',
+    body: data
+  }).then((resp) => {
+    console.log(resp);
+  })*/
 }
 
 export function api_login(name, password) {

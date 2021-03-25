@@ -4,7 +4,7 @@ defmodule EventsSpa.Events.Event do
 
   schema "events" do
     field :body, :string
-    field :date, :naive_datetime
+    field :date, :string
     field :guests, :string
     field :name, :string
     belongs_to :user, EventsSpa.Users.User

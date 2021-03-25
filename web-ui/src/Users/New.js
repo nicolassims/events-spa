@@ -15,9 +15,9 @@ function UsersNew() {
       return "Passwords don't match.";
     }
 
-    /*if (p1.length < 8) {
+    if (p1.length < 8) {
       return "Password too short.";
-    }*/
+    }
 
     return "";
   }

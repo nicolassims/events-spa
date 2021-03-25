@@ -47,7 +47,6 @@ function SessionInfo({session}) {
 }
 
 function LOI({session}) {
-  console.log(session);
   if (session) {
     return <SessionInfo session={session} />;
   } else {
