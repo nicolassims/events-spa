@@ -2,38 +2,22 @@ import { Row, Col, Form, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom';
-//import pick from 'lodash/pick';
 
 import { create_event, fetch_events } from '../api';
 
-function EventsNew({session}) {
+function EventsNew() {
   let history = useHistory();
   const [event, setEvent] = useState({name: "", date: "", guests: "", body: ""});
-
-  /*function check_pass(p1, p2) {
-    if (p1 !== p2) {
-      return "Passwords don't match.";
-    }
-
-    if (p1.length < 8) {
-      return "Password too short.";
-    }
-
-    return "";
-  }*/
 
   function update(field, ev) {
     let u1 = Object.assign({}, event);
     u1[field] = ev.target.value;
-    //u1.password = u1.pass1;
-    //u1.pass_msg = check_pass(u1.pass1, u1.pass2);
     setEvent(u1);
   }
 
   function onSubmit(ev) {
     ev.preventDefault();
 
-    //let data = pick(event, ['name', 'date', 'guests', 'body']);
     let sess = JSON.parse(localStorage.getItem("session"));
     event['user_id'] = sess.user_id;
     create_event(event);
