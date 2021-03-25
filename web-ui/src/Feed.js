@@ -7,10 +7,18 @@ function Event({event}) {
   return (
     <Col>
       <Card>
+        <Card.Title className="h5">
+          {event.name}
+        </Card.Title>
         <Card.Text>
-          Posted by {event.user.name}<br />
-          {event.body}
+          On {event.date}<br />
+          Posted by {event.user.name}
         </Card.Text>
+        <Link 
+          to={"/events/" + event.id} 
+          hidden={isNull(localStorage.getItem("session"))}>
+          View Event
+        </Link>
       </Card>
     </Col>
   );
