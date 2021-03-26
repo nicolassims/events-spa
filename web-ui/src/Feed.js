@@ -6,14 +6,9 @@ import { Link } from 'react-router-dom';
 function Event({event, users}) {
   let user_id = undefined;
   let email = undefined;
-  console.log(event);
   if (!(isNull(localStorage.getItem("session")) || isEmpty(users))) {
     user_id = JSON.parse(localStorage.getItem("session")).user_id;
     email = users.find(value => value.id === user_id).email;
-    console.log(event.guests);
-    console.log(email);
-    console.log(user_id);
-    console.log(event.user_id);
   }
   return (
     <Col>
