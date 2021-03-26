@@ -2,10 +2,10 @@ import { createStore, combineReducers } from 'redux';
 
 function users(state = [], action) {
   switch (action.type) {
-  case 'users/set':
-    return action.data;
-  default:
-    return state;
+    case 'users/set':
+      return action.data;
+    default:
+      return state;
   }
 }
 
