@@ -1,13 +1,24 @@
-import { isNull } from 'lodash';
+import { isEmpty, isNull } from 'lodash';
 import { Row, Col, Card } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-function Event({event}) {
+function Event({event, users}) {
+  let user_id = undefined;
+  let email = undefined;
+  console.log(event);
+  if (!(isNull(localStorage.getItem("session")) || isEmpty(users))) {
+    user_id = JSON.parse(localStorage.getItem("session")).user_id;
+    email = users.find(value => value.id === user_id).email;
+    console.log(event.guests);
+    console.log(email);
+    console.log(user_id);
+    console.log(event.user_id);
+  }
   return (
     <Col>
-      <Card>
-        <Card.Title className="h5">
+      <Card style={{width: 300, padding: 20}}>
+        <Card.Title className="h5 text-center">
           {event.name}
         </Card.Title>
         <Card.Text>
@@ -16,7 +27,8 @@ function Event({event}) {
         </Card.Text>
         <Link 
           to={"/events/" + event.id} 
-          hidden={isNull(localStorage.getItem("session"))}>
+          hidden={!(event.guests.includes(email) 
+            || user_id === event.user.id)}>
           View Event
         </Link>
       </Card>
@@ -24,14 +36,16 @@ function Event({event}) {
   );
 }
 
-function Feed({events}) {
-  let cards = events.map((event) => <Event event={event} key={event.id} />);
+function Feed({events, users}) {
+  let cards = events.map((event) => <Event event={event} users={users} key={event.id} />);
   return (
     <div>
       <h2>Feed</h2>
-      <p><Link to="/events/new" hidden={isNull(localStorage.getItem("session"))}>
-        New Event
-      </Link></p>
+      <p>
+        <Link to="/events/new" hidden={isNull(localStorage.getItem("session"))}>
+          New Event
+        </Link>
+      </p>
       <Row>
         { cards }
       </Row>
@@ -39,4 +53,4 @@ function Feed({events}) {
   );
 }
 
-export default connect(({events}) => ({events}))(Feed);
+export default connect(({events, users}) => ({events, users}))(Feed);
