@@ -45,6 +45,7 @@ function EventsNew() {
           <Form.Group>
             <Form.Label>Guests</Form.Label>
             <Form.Control type="text"
+                          placeholder="Type guest emails separated by commas."
                           onChange={(ev) => update("guests", ev)}
                           value={event.guests || ""} />
           </Form.Group>
