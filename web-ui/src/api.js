@@ -40,21 +40,10 @@ export function create_user(user) {
 export function create_event(event) {
   console.log(event);
   return api_post("/events", {event});
-  /*let data = new FormData();
-  data.append("event[name]", event.name);
-  data.append("event[date]", event.date);
-  data.append("event[guests]", event.guests);
-  data.append("event[body]", event.body);
-  fetch("http://localhost:4000/api/v1/events", {
-    method: 'POST',
-    body: data
-  }).then((resp) => {
-    console.log(resp);
-  })*/
 }
 
-export function api_login(name, password) {
-  api_post("/session", {name, password}).then((data) => {
+export function api_login(email, password) {
+  api_post("/session", {email, password}).then((data) => {
     console.log("login resp", data);
     if (data.session) {
       let action = {

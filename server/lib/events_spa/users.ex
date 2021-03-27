@@ -106,8 +106,8 @@ defmodule EventsSpa.Users do
     User.changeset(user, attrs)
   end
 
-  def authenticate(name, pass) do
-    user = Repo.get_by(User, name: name)
+  def authenticate(email, pass) do
+    user = Repo.get_by(User, email: email)
     case Argon2.check_pass(user, pass) do
       {:ok, user} -> user
       _ -> nil
