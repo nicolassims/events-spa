@@ -16,4 +16,4 @@ export DATABASE_URL=ecto://events:$DP_PASS@localhost/events_spa_prod
 SECRET_KEY_BASE=$(cat "$CFGD/base")
 export SECRET_KEY_BASE
 
-_build/prod/rel/events_app/bin/events-spa start
+_build/prod/rel/events_spa/bin/events_spa start

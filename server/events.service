@@ -3,16 +3,16 @@ Description=Events App
 
 [Service]
 Type=simple
-User=events
-Group=events
+User=events_spa
+Group=events_spa
 Restart=on-failure
 Environment=MIX_ENV=prod
 Environment=PORT=8999
 Environment=PROD=true
 Environment=LANG=en_US.UTF-8
 
-WorkingDirectory=/home/events/events-spa
-ExecStart=/bin/bash /home/events/events-spa/server/start.sh
+WorkingDirectory=/home/events-spa/events-spa/server
+ExecStart=/bin/bash /home/events-spa/events-spa/server/start.sh
 
 [Install]
 WantedBy=multi-user.target
