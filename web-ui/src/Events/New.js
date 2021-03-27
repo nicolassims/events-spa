@@ -45,10 +45,9 @@ function EventsNew() {
           </Form.Group>
           <Form.Group>
             <Form.Label>Date</Form.Label>
-            <DatePicker
-                  selected={new Date()}
-                          onChange={(ev) => updateDate(ev)}
-                          value={event.date || ""} />
+            <DatePicker selected={new Date()}
+                        onChange={(ev) => updateDate(ev)}
+                        value={event.date || ""} />
           </Form.Group>
           <Form.Group>
             <Form.Label>Guests</Form.Label>
@@ -63,9 +62,7 @@ function EventsNew() {
                           onChange={(ev) => update("body", ev)}
                           value={event.body || ""} />
           </Form.Group>
-
-          <Button variant="primary"
-                  type="submit">
+          <Button variant="primary" type="submit">
             Save
           </Button>
         </Form>
