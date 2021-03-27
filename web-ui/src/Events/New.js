@@ -2,7 +2,8 @@ import { Row, Col, Form, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom';
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { create_event, fetch_events } from '../api';
 
 function EventsNew() {
@@ -12,6 +13,12 @@ function EventsNew() {
   function update(field, ev) {
     let u1 = Object.assign({}, event);
     u1[field] = ev.target.value;
+    setEvent(u1);
+  }
+
+  function updateDate(ev) {
+    let u1 = Object.assign({}, event);
+    u1["date"] = ev;
     setEvent(u1);
   }
 
@@ -38,8 +45,9 @@ function EventsNew() {
           </Form.Group>
           <Form.Group>
             <Form.Label>Date</Form.Label>
-            <Form.Control type="text"
-                          onChange={(ev) => update("date", ev)}
+            <DatePicker
+                  selected={new Date()}
+                          onChange={(ev) => updateDate(ev)}
                           value={event.date || ""} />
           </Form.Group>
           <Form.Group>
