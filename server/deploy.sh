@@ -3,12 +3,12 @@
 export MIX_ENV=prod
 export PORT=8999
 export SECRET_KEY_BASE=insecure
-export DATABASE_URL=ecto://events-spa-backend:bad@localhost/events_spa_prod
+export DATABASE_URL=ecto://events_spa:bad@localhost/events_spa_prod
 
 mix deps.get --only prod
 mix compile
 
-CFGD=$(readlink -f ~/.config/events_app)
+CFGD=$(readlink -f ~/.config/events-spa)
 
 if [ ! -d "$CFGD" ]; then
 	mkdir -p "$CFGD"
@@ -26,7 +26,7 @@ SECRET_KEY_BASE=$(cat "$CFGD/base")
 export SECRET_KEY_BASE
 
 DB_PASS=$(cat "$CFGD/db_pass")
-export DATABASE_URL=ecto://events-spa-backend:$DB_PASS@localhost/events_spa_prod
+export DATABASE_URL=ecto://events_spa:$DB_PASS@localhost/events_spa_prod
 
 mix ecto.migrate
 
