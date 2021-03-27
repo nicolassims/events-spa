@@ -1,7 +1,6 @@
 import { Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { isEmpty, isNull } from 'lodash';
-//import Comments from './Comments';
 
 function EventShow({events, users}) {
 
@@ -21,9 +20,10 @@ function EventShow({events, users}) {
           <h1>{event.name}</h1><br />
           <h4><p>Posted by {event.user.name}</p></h4>
           <h4><p>Taking place on {event.date}</p></h4>
-          <p>Details:</p>
           <p>{guestnumbers} invited.</p>
+          <p>Details:</p>
           <p>{event.body}</p>
+          Comments and responses would go here... if I could figure this out in time.
         </Col>
       </Row>
     );
